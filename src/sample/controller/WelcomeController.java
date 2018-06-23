@@ -1,6 +1,7 @@
 package sample.controller;
 
 import javafx.event.ActionEvent;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,10 +34,12 @@ public class WelcomeController {
 
     @FXML
     void initialize() {
-        welcomeRegisterButton.setOnAction(e -> {
+        welcomeRegisterButton.setOnAction(event -> {
             try {
                 registerScreenButtonPushed(event);
-            } catch (Exception event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
         welcomeViewButton.setOnAction(e -> {
             System.out.println("Butonul VIEW a fost apasat!");
@@ -49,8 +52,8 @@ public class WelcomeController {
 
     public void registerScreenButtonPushed(ActionEvent event) throws IOException {
         Parent registerParent = FXMLLoader.load(getClass().getResource("../view/register.fxml"));
-        Scene registerScene = new Scene(registerParent, 700,450);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene registerScene = new Scene(registerParent, 700, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(registerScene);
         window.show();
     }
